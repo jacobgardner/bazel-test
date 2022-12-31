@@ -27,7 +27,7 @@ rules_js_dependencies()
 
 load("@aspect_rules_ts//ts:repositories.bzl", "rules_ts_dependencies")
 
-rules_ts_dependencies(ts_version_from = "//:package.json")
+rules_ts_dependencies(ts_version = '4.9.4')
 
 load("@aspect_rules_jest//jest:dependencies.bzl", "rules_jest_dependencies")
 
@@ -60,7 +60,6 @@ load("@npm//:repositories.bzl", "npm_repositories")
 
 npm_repositories()
 
-
 http_archive(
     name = "aspect_rules_esbuild",
     sha256 = "f9b5bf16251e3e4e127337ef968e6a398c9a4f353f1730e6c7ff6c9a8981e858",
@@ -78,4 +77,14 @@ load("@aspect_rules_esbuild//esbuild:repositories.bzl", "LATEST_VERSION", "esbui
 esbuild_register_toolchains(
     name = "esbuild",
     esbuild_version = LATEST_VERSION,
+)
+
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_jar")
+
+http_jar(
+    name = "bazel_diff",
+    sha256 = "59f2a614f90b4c2a6c83f1e6146d8722dfaac3a1d8f42734dcbb6ccf373a1cbd",
+    urls = [
+        "https://github.com/Tinder/bazel-diff/releases/download/4.0.5/bazel-diff_deploy.jar",
+    ],
 )
