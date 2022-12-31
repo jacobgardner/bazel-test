@@ -11,6 +11,11 @@ COMMON_DEPS = [
     "//packages/frontend:node_modules/react-dom",
 ]
 
+TYPECHECK_DEPS = [
+    "//packages/frontend:node_modules/@types/react",
+    "//packages/frontend:node_modules/@types/react-dom",   
+]
+
 esbuild(
     name = "bundle",
     srcs = glob(["src/**/*"]),
@@ -25,9 +30,7 @@ bin.tsc_test(
     name = "typecheck",
     args = [
         "--noEmit",
-        "--jsx",
-        "react",
-        "$(location src/main.tsx)",
+
     ],
-    data = glob(["src/**/*"])  + COMMON_DEPS,
+    data = ["tsconfig.json"] + glob(["src/**/*"])  + COMMON_DEPS + TYPECHECK_DEPS,
 )
