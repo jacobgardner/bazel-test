@@ -30,7 +30,12 @@ bin.tsc_test(
     name = "typecheck",
     args = [
         "--noEmit",
-
+        "-p",
+        "$(location tsconfig.json)",
     ],
-    data = ["tsconfig.json"] + glob(["src/**/*"])  + COMMON_DEPS + TYPECHECK_DEPS,
+    size = "small",
+    tags = [
+      "typecheck",
+    ],
+    data = [":tsconfig.json"] + glob(["src/**/*"])  + COMMON_DEPS + TYPECHECK_DEPS,
 )
