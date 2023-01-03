@@ -1,4 +1,5 @@
+import {times2} from '@jake/common';
 
 export function echo() {
-  console.log('fuck');
+  console.log('Echo', times2(32));
 }

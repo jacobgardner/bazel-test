@@ -1,6 +1,13 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
+    name = "aspect_rules_swc",
+    sha256 = "9a68901c258b8a91ce721df1f9b1dc62c9dd6b2822143e31a0280396b98db543",
+    strip_prefix = "rules_swc-0.20.1",
+    url = "https://github.com/aspect-build/rules_swc/archive/refs/tags/v0.20.1.tar.gz",
+)
+
+http_archive(
     name = "aspect_rules_js",
     sha256 = "f58d7be1bb0e4b7edb7a0085f969900345f5914e4e647b4f0d2650d5252aa87d",
     strip_prefix = "rules_js-1.8.0",
@@ -27,7 +34,10 @@ rules_js_dependencies()
 
 load("@aspect_rules_ts//ts:repositories.bzl", "rules_ts_dependencies")
 
-rules_ts_dependencies(ts_version = '4.9.4')
+rules_ts_dependencies(
+    ts_integrity = "sha512-Uz+dTXYzxXXbsFpM86Wh3dKCxrQqUcVMxwU54orwlJjOpO3ao8L7j5lH+dWfTwgCwIuM9GQ2kvVotzYJMXTBZg==",
+    ts_version = "4.9.4",
+)
 
 load("@aspect_rules_jest//jest:dependencies.bzl", "rules_jest_dependencies")
 
@@ -87,4 +97,24 @@ http_jar(
     urls = [
         "https://github.com/Tinder/bazel-diff/releases/download/4.0.5/bazel-diff_deploy.jar",
     ],
+)
+
+# Fetches the rules_swc dependencies.
+# If you want to have a different version of some dependency,
+# you should fetch it *before* calling this.
+# Alternatively, you can skip calling this function, so long as you've
+# already fetched all the dependencies.
+load("@aspect_rules_swc//swc:dependencies.bzl", "rules_swc_dependencies")
+
+rules_swc_dependencies()
+
+# Fetches a pre-built Rust-node binding from
+# https://github.com/swc-project/swc/releases.
+# If you'd rather compile it from source, you can use rules_rust, fetch the project,
+# then register the toolchain yourself. (Note, this is not yet documented)
+load("@aspect_rules_swc//swc:repositories.bzl", "swc_register_toolchains")
+
+swc_register_toolchains(
+    name = "swc",
+    swc_version = "v1.2.141",
 )
