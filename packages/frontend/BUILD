@@ -13,6 +13,7 @@ COMMON_DEPS = [
     ":node_modules/@jake/common",
 ]
 
+# Additional Dependencies Needed When Typechecking
 TYPECHECK_DEPS = [
     "//packages/frontend:node_modules/@types/react",
     "//packages/frontend:node_modules/@types/react-dom",

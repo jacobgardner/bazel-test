@@ -1,5 +1,5 @@
 
 export function times2(n: number): number {
-  // typefailure
+  // typefailure 
   return n * 2;
 }
