@@ -1,4 +1,4 @@
-module(name = "wonderlic-monorepo")
+module(name = "bazel-test")
 
 bazel_dep(name = "platforms", version = "0.0.6") # Without this we get weird toolchain errors on windows
 bazel_dep(name = "aspect_rules_swc", version = "0.21.3")
