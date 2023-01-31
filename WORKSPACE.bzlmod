@@ -3,7 +3,7 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "aspect_rules_esbuild",
-    # sha256 = "393c4da47b4bad9b7effd373ebe57fa776204ea5dc982941cdebefb36757dc8e",
+    sha256 = "f9b5bf16251e3e4e127337ef968e6a398c9a4f353f1730e6c7ff6c9a8981e858",
     strip_prefix = "rules_esbuild-0.13.4",
     url = "https://github.com/aspect-build/rules_esbuild/archive/refs/tags/v0.13.4.tar.gz",
 )
