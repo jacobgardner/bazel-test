@@ -2,6 +2,8 @@
 # Take care to document any settings that you expect users to apply.
 # Settings that apply only to CI are in .github/workflows/ci.bazelrc
 
+common --enable_bzlmod
+
 # ======================================================================================================================
 # Support for debugging Node.js tests
 # Use `--config=debug` to enable these settings
