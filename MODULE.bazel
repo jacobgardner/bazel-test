@@ -1,6 +1,6 @@
 module(name = "wonderlic-monorepo")
 
-bazel_dep(name = "platforms", version = "0.0.6")
+bazel_dep(name = "platforms", version = "0.0.6") # Without this we get weird toolchain errors on windows
 bazel_dep(name = "aspect_rules_swc", version = "0.21.3")
 bazel_dep(name = "aspect_rules_js", version = "1.16.0")
 bazel_dep(name = "aspect_rules_ts", version = "1.2.0")
